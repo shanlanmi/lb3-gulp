@@ -4,7 +4,7 @@ module.exports = function(gulp, common) {
   var envs = ["local", "development", "staging", "production", "test"];
 
   return {
-    afterAppLauch: function(fn) {
+    afterAppLaunch: function(fn) {
       var timer = setInterval(function() {
         if (common.app) {
           clearInterval(timer);
@@ -45,7 +45,7 @@ module.exports = function(gulp, common) {
           config = require("../server/config.production.js");
           break;
         default:
-          config = require("../server/config.local.js");
+          config = require("../server/config.js");
       }
       var envYaml = false;
       var envYamlDir = $.path.resolve(__dirname, config['$applicationDir']);
@@ -69,7 +69,7 @@ module.exports = function(gulp, common) {
       try {
         envYaml = $.yaml.safeLoad($.fs.readFileSync(envYamlDir, 'utf8'), { json: true });
         envKeys.commonKeys = delEnvType(Object.keys(envYaml));
-        envs.forEach(function(envName) {
+        envs.forEach(function (envName) {
           envKeys[envName + "Keys"] = envYaml[envName] ?
             Object.keys(envYaml[envName]) : null;
         });
