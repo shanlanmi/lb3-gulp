@@ -35,10 +35,6 @@ var pluginsOpt = {
   lazy: true
 };
 var plugins = require('gulp-load-plugins')(pluginsOpt);
-// var packageInfo = require('../package.json');
-// var lib = require('./lib.js');
-// var config = require('./config.js');
-
 
 var common = {};
 // add plugins
@@ -48,15 +44,9 @@ common.plugins.fs = fs;
 
 // add veriable
 common.app = {};
-common.postgresAppDs = {};
-common.postgresCityData = {};
-common.postgresPathSourceDs = {};
-common.dataSource = ["postgresAppDs", "postgresCityData", "postgresPathSourceDs"];
+common.ds = {};
+common.dataSource = ["ds"];
 common.outputPath = path.resolve(__dirname, '../server/models');
-common.migration = path.resolve(__dirname, './tasks/model-migrations');
-common.devPM = process.env.DEV_PM;
-common.productionPM = process.env.PRODUCTION_PM;
-common.stagingPM = process.env.STAGING_PM;
 
 module.exports = common;
 
